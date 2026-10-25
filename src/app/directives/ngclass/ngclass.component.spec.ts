@@ -8,8 +8,8 @@ describe('NgclassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [NgclassComponent]
-})
+      declarations: [ NgclassComponent ]
+    })
     .compileComponents();
 
     fixture = TestBed.createComponent(NgclassComponent);

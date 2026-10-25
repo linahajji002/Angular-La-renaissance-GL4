@@ -1,15 +1,12 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy, inject } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-    selector: "app-color",
-    templateUrl: "./color.component.html",
-    styleUrls: ["./color.component.css"],
-    changeDetection: ChangeDetectionStrategy.Eager
+  selector: "app-color",
+  templateUrl: "./color.component.html",
+  styleUrls: ["./color.component.css"],
 })
 export class ColorComponent implements OnInit {
-  private activatedRoute = inject(ActivatedRoute);
-
   @Input() defaultColor = "red";
 
   /**
@@ -24,7 +21,7 @@ export class ColorComponent implements OnInit {
    * @param newColor: string
    */
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
     console.log("In constructor", this.defaultColor);
   }
 

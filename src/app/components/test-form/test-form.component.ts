@@ -1,12 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgForm, FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
-    selector: 'app-test-form',
-    templateUrl: './test-form.component.html',
-    styleUrls: ['./test-form.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [FormsModule]
+  selector: 'app-test-form',
+  templateUrl: './test-form.component.html',
+  styleUrls: ['./test-form.component.css']
 })
 export class TestFormComponent {
   processForm(form: NgForm) {

@@ -1,4 +1,4 @@
-import { Injectable, inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Cv } from "../model/cv";
 import { Observable, Subject } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
@@ -8,8 +8,6 @@ import { API } from "../../../config/api.config";
   providedIn: "root",
 })
 export class CvService {
-  private http = inject(HttpClient);
-
   private cvs: Cv[] = [];
   /**
    * Le subject permettant de créer le flux des cvs sélectionnés
@@ -19,7 +17,7 @@ export class CvService {
    * Le flux des cvs sélectionnés
    */
   selectCv$ = this.#selectCvSuject$.asObservable();
-  constructor() {
+  constructor(private http: HttpClient) {
     this.cvs = [
       new Cv(1, "aymen", "sellaouti", "teacher", "as.jpg", "1234", 40),
       new Cv(2, "skander", "sellaouti", "enfant", "       ", "1234", 4),

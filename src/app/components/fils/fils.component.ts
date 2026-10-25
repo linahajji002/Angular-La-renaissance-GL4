@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
-    selector: 'app-fils',
-    templateUrl: './fils.component.html',
-    styleUrls: ['./fils.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager
+  selector: 'app-fils',
+  templateUrl: './fils.component.html',
+  styleUrls: ['./fils.component.css'],
 })
 export class FilsComponent {
   /**

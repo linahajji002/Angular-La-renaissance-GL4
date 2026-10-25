@@ -1,12 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FilsComponent } from '../fils/fils.component';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-pere',
-    templateUrl: './pere.component.html',
-    styleUrls: ['./pere.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [FilsComponent]
+  selector: 'app-pere',
+  templateUrl: './pere.component.html',
+  styleUrls: ['./pere.component.css'],
 })
 export class PereComponent {
   onSendMessageToDad(message: string) {

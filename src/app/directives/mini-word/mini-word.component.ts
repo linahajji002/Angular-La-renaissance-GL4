@@ -1,14 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgStyle } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RainbowDirective } from '../rainbow.directive';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-mini-word',
-    templateUrl: './mini-word.component.html',
-    styleUrls: ['./mini-word.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgStyle, FormsModule, RainbowDirective]
+  selector: 'app-mini-word',
+  templateUrl: './mini-word.component.html',
+  styleUrls: ['./mini-word.component.css'],
 })
 export class MiniWordComponent {
   color = 'red';

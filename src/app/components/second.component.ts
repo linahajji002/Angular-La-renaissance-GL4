@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-second',
-    template: `
+  selector: 'app-second',
+  template: `
     <p>
       second works!
     </p>
   `,
-    styles: [],
-    changeDetection: ChangeDetectionStrategy.Eager
+  styles: [
+  ]
 })
 export class SecondComponent {
 
