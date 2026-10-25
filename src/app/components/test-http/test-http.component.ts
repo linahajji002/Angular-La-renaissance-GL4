@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AsyncPipe, JsonPipe } from '@angular/common';
 
 export interface TodoModel {
   userId: number;
@@ -11,18 +10,14 @@ export interface TodoModel {
 }
 
 @Component({
-    selector: 'app-test-http',
-    templateUrl: './test-http.component.html',
-    styleUrls: ['./test-http.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [AsyncPipe, JsonPipe]
+  selector: 'app-test-http',
+  templateUrl: './test-http.component.html',
+  styleUrls: ['./test-http.component.css'],
 })
 export class TestHttpComponent {
-  private http = inject(HttpClient);
-
   todos: TodoModel[] = [];
   todos$: Observable<TodoModel[]>;
-  constructor() {
+  constructor(private http: HttpClient) {
     this.todos$ = this.http.get<TodoModel[]>(
       'https://jsonplaceholder.typicode.com/todos'
     );

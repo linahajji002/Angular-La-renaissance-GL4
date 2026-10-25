@@ -8,8 +8,8 @@ describe('MiniWordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [MiniWordComponent]
-})
+      declarations: [ MiniWordComponent ]
+    })
     .compileComponents();
 
     fixture = TestBed.createComponent(MiniWordComponent);

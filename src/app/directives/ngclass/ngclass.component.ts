@@ -1,13 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgClass } from '@angular/common';
-import { HighlightDirective } from '../highlight.directive';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-ngclass',
-    templateUrl: './ngclass.component.html',
-    styleUrls: ['./ngclass.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgClass, HighlightDirective]
+  selector: 'app-ngclass',
+  templateUrl: './ngclass.component.html',
+  styleUrls: ['./ngclass.component.css'],
 })
 export class NgclassComponent {
   isAllume = false;

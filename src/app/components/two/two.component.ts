@@ -1,12 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-two',
-    templateUrl: './two.component.html',
-    styleUrls: ['./two.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [FormsModule]
+  selector: 'app-two',
+  templateUrl: './two.component.html',
+  styleUrls: ['./two.component.css']
 })
 export class TwoComponent {
   two = 'init value';

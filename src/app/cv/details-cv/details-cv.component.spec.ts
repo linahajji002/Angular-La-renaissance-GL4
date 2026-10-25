@@ -8,8 +8,8 @@ describe('DetailsCvComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [DetailsCvComponent]
-})
+      declarations: [ DetailsCvComponent ]
+    })
     .compileComponents();
 
     fixture = TestBed.createComponent(DetailsCvComponent);

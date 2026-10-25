@@ -1,29 +1,24 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Cv } from "../model/cv";
 import { LoggerService } from "../../services/logger.service";
 import { ToastrService } from "ngx-toastr";
 import { CvService } from "../services/cv.service";
-import { ListComponent } from "../list/list.component";
-import { CvCardComponent } from "../cv-card/cv-card.component";
-import { EmbaucheComponent } from "../embauche/embauche.component";
-import { UpperCasePipe, DatePipe } from "@angular/common";
 @Component({
-    selector: "app-cv",
-    templateUrl: "./cv.component.html",
-    styleUrls: ["./cv.component.css"],
-    imports: [ListComponent, CvCardComponent, EmbaucheComponent, UpperCasePipe, DatePipe]
+  selector: "app-cv",
+  templateUrl: "./cv.component.html",
+  styleUrls: ["./cv.component.css"],
 })
-export class CvComponent implements OnInit {
-  private logger = inject(LoggerService);
-  private toastr = inject(ToastrService);
-  private cvService = inject(CvService);
-
+export class CvComponent {
   cvs: Cv[] = [];
   selectedCv: Cv | null = null;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
 
-  ngOnInit(): void {
+  constructor(
+    private logger: LoggerService,
+    private toastr: ToastrService,
+    private cvService: CvService
+  ) {
     this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;

@@ -1,21 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User, UsersService} from "../users.service";
 import * as ChartJs from 'chart.js/auto';
-import { UserListComponent } from '../user-list/user-list.component';
 @Component({
-    selector: 'app-rh',
-    templateUrl: './rh.component.html',
-    styleUrls: ['./rh.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [UserListComponent]
+  selector: 'app-rh',
+  templateUrl: './rh.component.html',
+  styleUrls: ['./rh.component.css']
 })
 export class RhComponent implements OnInit {
-  private userService = inject(UsersService);
-
   oddUsers: User[];
   evenUsers: User[];
   chart: any;
-  constructor() {
+  constructor(private userService: UsersService) {
     this.oddUsers = this.userService.getOddOrEven(true);
     this.evenUsers = this.userService.getOddOrEven();
   }

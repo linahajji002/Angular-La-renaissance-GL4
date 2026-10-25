@@ -1,12 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-card-profil',
-    templateUrl: './card-profil.component.html',
-    styleUrls: ['./card-profil.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [FormsModule]
+  selector: 'app-card-profil',
+  templateUrl: './card-profil.component.html',
+  styleUrls: ['./card-profil.component.css'],
 })
 export class CardProfilComponent {
   name = 'sellaouti';

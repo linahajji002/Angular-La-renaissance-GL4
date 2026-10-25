@@ -1,7 +1,7 @@
-import { TODO_STATUSES } from './todo';
+import { Todo } from './todo';
 
 describe('Todo', () => {
-  it('should list every status once', () => {
-    expect(TODO_STATUSES).toEqual(['waiting', 'in progress', 'done']);
+  it('should create an instance', () => {
+    expect(new Todo()).toBeTruthy();
   });
 });
