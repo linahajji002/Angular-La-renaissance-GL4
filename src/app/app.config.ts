@@ -6,7 +6,7 @@ import { provideServiceWorker } from "@angular/service-worker";
 import { ToastrModule } from "ngx-toastr";
 
 import { AuthInterceptorProvider } from "./auth/interceptors/auth.interceptor";
-import { routes } from "./app-routing.module";
+import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,3 +21,4 @@ export const appConfig: ApplicationConfig = {
     AuthInterceptorProvider,
   ],
 };
+
