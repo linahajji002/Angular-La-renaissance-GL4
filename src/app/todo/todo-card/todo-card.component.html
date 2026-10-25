@@ -1,0 +1,14 @@
+<div class="card mb-2">
+  <div class="card-body p-2">
+    <div class="d-flex justify-content-between">
+      <h6 class="card-title mb-1">{{ todo().name }}</h6>
+      <i (click)="remove.emit()" class="fa fa-trash text-danger" role="button" aria-label="delete"></i>
+    </div>
+    <p class="card-text small mb-2">{{ todo().content }}</p>
+    @for (status of otherStatuses(); track status) {
+      <button (click)="statusChange.emit(status)" class="btn btn-sm btn-outline-dark me-1">
+        {{ status }}
+      </button>
+    }
+  </div>
+</div>
