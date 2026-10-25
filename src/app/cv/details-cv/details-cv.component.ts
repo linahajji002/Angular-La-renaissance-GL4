@@ -20,7 +20,7 @@ export class DetailsCvComponent implements OnInit {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   private toastr = inject(ToastrService);
-  authService = inject(AuthService);
+  protected readonly isAuthenticated = inject(AuthService).isAuthenticated;
 
   cv: Cv | null = null;
 
