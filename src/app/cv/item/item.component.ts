@@ -1,7 +1,6 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, inject } from "@angular/core";
+import { Component, ChangeDetectionStrategy, computed, inject, input } from "@angular/core";
 import { Cv } from "../model/cv";
 import { CvService } from "../services/cv.service";
-import { NgStyle } from "@angular/common";
 import { DefaultImagePipe } from "../pipes/default-image.pipe";
 
 @Component({
@@ -9,15 +8,19 @@ import { DefaultImagePipe } from "../pipes/default-image.pipe";
     templateUrl: "./item.component.html",
     styleUrls: ["./item.component.css"],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgStyle, DefaultImagePipe]
+    imports: [DefaultImagePipe]
 })
 export class ItemComponent {
   private cvService = inject(CvService);
 
-  @Input({ required: true }) cv!: Cv;
-  @Input() size = 50;
+  cv = input.required<Cv>();
+  size = input(50);
+
+  /** Recalculés seulement quand size ou cv changent */
+  imgSize = computed(() => `${this.size()}px`);
+  fullName = computed(() => `${this.cv().firstname} ${this.cv().name}`);
 
   onSelectCv() {
-    this.cvService.selectCv(this.cv);
+    this.cvService.selectCv(this.cv());
   }
 }
