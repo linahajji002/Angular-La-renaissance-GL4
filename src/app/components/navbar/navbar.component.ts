@@ -13,7 +13,7 @@ import { APP_ROUTES } from '../../../config/routes.config';
     imports: [RouterLinkActive, RouterLink]
 })
 export class NavbarComponent {
-  authService = inject(AuthService);
+  protected readonly authService = inject(AuthService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
 
