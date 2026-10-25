@@ -1,7 +1,8 @@
-import { Injectable, inject } from "@angular/core";
+import { Injectable, inject, signal } from "@angular/core";
 import { Cv } from "../model/cv";
-import { Observable, Subject } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
+import { ToastrService } from "ngx-toastr";
 import { API } from "../../../config/api.config";
 
 @Injectable({
@@ -9,18 +10,30 @@ import { API } from "../../../config/api.config";
 })
 export class CvService {
   private http = inject(HttpClient);
+  private toastr = inject(ToastrService);
 
-  private cvs: Cv[] = [];
+  private fakeCvs: Cv[] = [];
+
   /**
-   * Le subject permettant de créer le flux des cvs sélectionnés
+   * La liste des cvs : modifiable uniquement par ce service
    */
-  #selectCvSuject$ = new Subject<Cv>();
+  #cvs = signal<Cv[]>([]);
   /**
-   * Le flux des cvs sélectionnés
+   * La liste des cvs en lecture seule pour le reste de l'application
    */
-  selectCv$ = this.#selectCvSuject$.asObservable();
+  readonly cvs = this.#cvs.asReadonly();
+
+  /**
+   * Le cv sélectionné : modifiable uniquement par ce service
+   */
+  #selectedCv = signal<Cv | null>(null);
+  /**
+   * Le cv sélectionné en lecture seule pour le reste de l'application
+   */
+  readonly selectedCv = this.#selectedCv.asReadonly();
+
   constructor() {
-    this.cvs = [
+    this.fakeCvs = [
       new Cv(1, "aymen", "sellaouti", "teacher", "as.jpg", "1234", 40),
       new Cv(2, "skander", "sellaouti", "enfant", "       ", "1234", 4),
     ];
@@ -34,7 +47,23 @@ export class CvService {
    *
    */
   getFakeCvs(): Cv[] {
-    return this.cvs;
+    return this.fakeCvs;
+  }
+
+  /**
+   * Charge les cvs de l'API dans le signal cvs
+   * En cas d'erreur, ce sont les cvs fictifs qui sont utilisés
+   */
+  loadCvs(): void {
+    this.getCvs().subscribe({
+      next: (cvs) => this.#cvs.set(cvs),
+      error: () => {
+        this.#cvs.set(this.fakeCvs);
+        this.toastr.error(`
+          Attention!! Les données sont fictives, problème avec le serveur.
+          Veuillez contacter l'admin.`);
+      },
+    });
   }
 
   /**
@@ -84,7 +113,7 @@ export class CvService {
    * @returns Cv | null
    */
   findCvById(id: number): Cv | null {
-    return this.cvs.find((cv) => cv.id == id) ?? null;
+    return this.fakeCvs.find((cv) => cv.id == id) ?? null;
   }
 
   /**
@@ -95,9 +124,9 @@ export class CvService {
    * @returns boolean
    */
   deleteCv(cv: Cv): boolean {
-    const index = this.cvs.indexOf(cv);
+    const index = this.fakeCvs.indexOf(cv);
     if (index > -1) {
-      this.cvs.splice(index, 1);
+      this.fakeCvs.splice(index, 1);
       return true;
     }
     return false;
@@ -126,11 +155,11 @@ export class CvService {
   }
 
   /**
-   * Permet d'ajouter un cv au flux des cvs sélectionnés
+   * Permet de changer le cv sélectionné
    *
-   * @param cv : Le cv à ajouter dans le flux des cvs sélectionnés
+   * @param cv : Le nouveau cv sélectionné
    */
   selectCv(cv: Cv) {
-    this.#selectCvSuject$.next(cv);
+    this.#selectedCv.set(cv);
   }
 }

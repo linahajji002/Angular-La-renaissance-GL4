@@ -1,5 +1,5 @@
 <ol class="list-group">
-  @for (cv of cvs; track cv.id; let isOdd = $odd) {
+  @for (cv of cvs(); track cv.id; let isOdd = $odd) {
     <li
     [ngClass]="{
       'list-group-item-primary': isOdd,
@@ -7,8 +7,9 @@
     }"
       class="list-group-item"
       >
-      <!--     (selectCv)="forwardCv.emit(cv)"-->
-      <app-item [cv]="cv"></app-item>
+      <app-item [cv]="cv" />
     </li>
+  } @empty {
+    <li class="list-group-item">Aucun cv à afficher</li>
   }
 </ol>
