@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { Cv } from "../model/cv";
 import { LoggerService } from "../../services/logger.service";
 import { ToastrService } from "ngx-toastr";
@@ -11,10 +11,9 @@ import { UpperCasePipe, DatePipe } from "@angular/common";
     selector: "app-cv",
     templateUrl: "./cv.component.html",
     styleUrls: ["./cv.component.css"],
-    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ListComponent, CvCardComponent, EmbaucheComponent, UpperCasePipe, DatePipe]
 })
-export class CvComponent {
+export class CvComponent implements OnInit {
   private logger = inject(LoggerService);
   private toastr = inject(ToastrService);
   private cvService = inject(CvService);
@@ -24,7 +23,7 @@ export class CvComponent {
   /*   selectedCv: Cv | null = null; */
   date = new Date();
 
-  constructor() {
+  ngOnInit(): void {
     this.cvService.getCvs().subscribe({
       next: (cvs) => {
         this.cvs = cvs;
