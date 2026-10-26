@@ -1,9 +1,7 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  // "input[appRainbow]": the directive is only created on <input> elements.
-  // Put appRainbow on a <div> and Angular simply ignores it.
-  selector: 'input[appRainbow]',
+   selector: 'input[type=text][appRainbow]'
 })
 export class RainbowDirective {
   // Binds this property to the host element's style.color
