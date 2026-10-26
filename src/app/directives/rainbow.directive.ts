@@ -1,9 +1,9 @@
 import { Directive, signal } from '@angular/core';
 
 @Directive({
-  // Only created on <input> elements, ignored everywhere else.
-  selector: 'input[appRainbow]',
-  // The host property replaces @HostBinding and @HostListener.
+  
+  selector: 'input[type=text][appRainbow], textarea[appRainbow]',
+ 
   host: {
     '[style.color]': 'color()',
     '[style.borderColor]': 'color()',
