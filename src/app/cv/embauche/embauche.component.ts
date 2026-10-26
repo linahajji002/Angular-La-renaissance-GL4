@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { EmbaucheService } from '../services/embauche.service';
-import { Cv } from '../model/cv';
-
 import { ItemComponent } from '../item/item.component';
 
 @Component({
@@ -12,10 +10,5 @@ import { ItemComponent } from '../item/item.component';
     imports: [ItemComponent]
 })
 export class EmbaucheComponent {
-  private embaucheService = inject(EmbaucheService);
-
-  public embauchees: Cv[] = [];
-  constructor() {
-    this.embauchees = this.embaucheService.getEmbauchees();
-  }
+  protected readonly embauchees = inject(EmbaucheService).embauchees;
 }
