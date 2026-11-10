@@ -8,4 +8,8 @@ import { Cv } from "../model/cv";
 })
 export class ListComponent {
   @Input() cvs: Cv[] | null = [];
+  /**
+   * Route de base du détail (ex: "/master") : si elle est fournie, chaque cv devient un lien vers detailsLink/id
+   */
+  @Input() detailsLink: string | null = null;
 }

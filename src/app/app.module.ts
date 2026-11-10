@@ -51,6 +51,7 @@ import { ProductsComponent } from "./products/products.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { AutocompleteComponent } from "./cv/autocomplete/autocomplete.component";
 import { SliderComponent } from "./rxjs/slider/slider.component";
+import { MasterDetailsCvComponent } from "./cv/master-details-cv/master-details-cv.component";
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SliderComponent } from "./rxjs/slider/slider.component";
     ListComponent,
     ItemComponent,
     DetailsCvComponent,
+    MasterDetailsCvComponent,
     CvCardComponent,
     CardProfilComponent,
     EmbaucheComponent,
