@@ -1,27 +1,41 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { PRODUCTS } from './product.data';
-import { BehaviorSubject } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-products-filter',
-  imports: [AsyncPipe],
-  standalone: true,
+  imports: [],
   templateUrl: './products-filter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './products-filter.component.css',
 })
 export class ProductsFilterComponent {
-  readonly products = PRODUCTS;
-  protected categories = this.products.map((p) => p.category);
+  protected readonly products = PRODUCTS;
+  protected readonly categories = [
+    ...new Set(this.products.map((product) => product.category)),
+  ];
+  protected readonly search = signal('');
+  protected readonly category = signal('');
+  protected readonly filteredProducts = computed(() => {
+    const search = this.search().trim().toLowerCase();
+    const category = this.category();
 
-  protected search = new BehaviorSubject<string>('');
-  protected category = new BehaviorSubject<string>('');
+    return this.products.filter(
+      (product) =>
+        (!category || product.category === category) &&
+        (!search || product.name.toLowerCase().includes(search)),
+    );
+  });
 
+  protected updateSearch(event: Event): void {
+    this.search.set((event.target as HTMLInputElement).value);
+  }
 
+  protected updateCategory(event: Event): void {
+    this.category.set((event.target as HTMLSelectElement).value);
+  }
 
-  protected reset() {
-    this.search.next('');
-    this.category.next('');
+  protected reset(): void {
+    this.search.set('');
+    this.category.set('');
   }
 }
