@@ -9,4 +9,16 @@
     <app-cv-card [cv]="selectedCv"></app-cv-card>
   </div>
 </div>
-<app-embauche></app-embauche>
+@defer (on viewport; prefetch on idle) {
+  <app-embauche />
+} @placeholder (minimum 500ms) {
+  <div class="mt-2 text-muted" style="min-height: 40px">
+    Liste des pré-embauchés…
+  </div>
+} @loading (after 100ms; minimum 1s) {
+  <div class="mt-2 text-muted">Chargement…</div>
+} @error {
+  <div class="alert alert-danger mt-2">
+    Impossible de charger la liste des pré-embauchés.
+  </div>
+}

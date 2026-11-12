@@ -6,7 +6,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { CvSharedModule } from "./cv-shared.module";
 import { CvComponent } from "./cv/cv.component";
 import { AddCvComponent } from "./add-cv/add-cv.component";
-import { EmbaucheComponent } from "./embauche/embauche.component";
 import { DetailsCvComponent } from "./details-cv/details-cv.component";
 import { AuthGuard } from "../auth/guards/auth.guard";
 
@@ -18,7 +17,7 @@ const CV_ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [CvComponent, AddCvComponent, EmbaucheComponent],
+  declarations: [AddCvComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
