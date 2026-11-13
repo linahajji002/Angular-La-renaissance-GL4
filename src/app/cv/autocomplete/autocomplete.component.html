@@ -1,3 +1,31 @@
-<form [formGroup]="form">
-  <input type="text" class="form-control" formControlName="search" />
-</form>
+<div class="mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Chercher un cv par nom..."
+    [value]="search()"
+    (input)="onInput($event)"
+  />
+
+  @if (suggestions.isLoading()) {
+    <div class="form-text">Recherche...</div>
+  }
+
+  @if (suggestions.error()) {
+    <div class="text-danger">Problème avec le serveur</div>
+  }
+
+  @if (search().trim()) {
+    <ul class="list-group">
+      @for (cv of suggestions.value(); track cv.id) {
+        <li class="list-group-item list-group-item-action" (click)="selectCv(cv)">
+          {{ cv.firstname }} {{ cv.name }}
+        </li>
+      } @empty {
+        @if (!suggestions.isLoading()) {
+          <li class="list-group-item">Aucun cv trouvé</li>
+        }
+      }
+    </ul>
+  }
+</div>

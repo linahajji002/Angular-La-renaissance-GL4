@@ -6,11 +6,12 @@ import { ListComponent } from "../list/list.component";
 import { CvCardComponent } from "../cv-card/cv-card.component";
 import { EmbaucheComponent } from "../embauche/embauche.component";
 import { UpperCasePipe, DatePipe } from "@angular/common";
+import { AutocompleteComponent } from "../autocomplete/autocomplete.component";
 @Component({
     selector: "app-cv",
     templateUrl: "./cv.component.html",
     styleUrls: ["./cv.component.css"],
-    imports: [ListComponent, CvCardComponent, EmbaucheComponent, UpperCasePipe, DatePipe]
+    imports: [ListComponent, CvCardComponent, EmbaucheComponent,AutocompleteComponent, UpperCasePipe, DatePipe]
 })
 export class CvComponent {
   private logger = inject(LoggerService);
