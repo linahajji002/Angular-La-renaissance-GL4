@@ -1,21 +1,13 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { Cv } from "../model/cv";
 import { LoggerService } from "../../services/logger.service";
 import { ToastrService } from "ngx-toastr";
 import { CvService } from "../services/cv.service";
-import { CvSharedModule } from "../cv-shared.module";
-import { EmbaucheComponent } from "../embauche/embauche.component";
-
 @Component({
   selector: "app-cv",
-  standalone: true,
-  imports: [CommonModule, CvSharedModule, EmbaucheComponent],
   templateUrl: "./cv.component.html",
   styleUrls: ["./cv.component.css"],
 })
-
-
 export class CvComponent {
   cvs: Cv[] = [];
   selectedCv: Cv | null = null;
