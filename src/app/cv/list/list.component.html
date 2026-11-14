@@ -6,8 +6,6 @@
       'list-group-item-secondary': !isOdd
     }"
     class="list-group-item"
-    [routerLink]="detailsLink ? [detailsLink, cv.id] : null"
-    routerLinkActive="active"
   >
     <!--     (selectCv)="forwardCv.emit(cv)"-->
     <app-item [cv]="cv"></app-item>
